@@ -3,15 +3,16 @@ import raw from '@/data/axe-results.json';
 
 export const results = raw as unknown as AxeResults;
 
-export const getAllViolations = (results: AxeResults) => results.violations;
-export const getCriticalViolations = (results: AxeResults) =>
+export const getAllViolatedRules = (results: AxeResults) => results.violations;
+
+export const getCriticalViolatedRules = (results: AxeResults) =>
   results.violations.filter((violation) => violation.impact === 'critical');
 
-export const getSeriousViolations = (results: AxeResults) =>
+export const getSeriousViolatedRules = (results: AxeResults) =>
   results.violations.filter((violation) => violation.impact === 'serious');
 
-export const getModerateViolations = (results: AxeResults) =>
+export const getModerateViolatedRules = (results: AxeResults) =>
   results.violations.filter((violation) => violation.impact === 'moderate');
 
-export const getMinorViolations = (results: AxeResults) =>
+export const getMinorViolatedRules = (results: AxeResults) =>
   results.violations.filter((violation) => violation.impact === 'minor');
