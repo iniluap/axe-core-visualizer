@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
 import { results, getAllViolatedRules, getViolationNodes } from '@/lib/axe';
+import Link from 'next/link';
 
 export default function Violations() {
   const allViolatedRules = getAllViolatedRules(results);
@@ -11,10 +11,10 @@ export default function Violations() {
         <h1>All violations</h1>
         <ul>
           {allViolationNodes.map((violation) => (
-            <li key={uuidv4()}>
-              <strong>
+            <li key={violation.id}>
+              <Link href={`/violations/${violation.rule.id}`}>
                 {violation.rule.id} | {violation.target}
-              </strong>
+              </Link>
               <p>{violation.impact}</p>
             </li>
           ))}
