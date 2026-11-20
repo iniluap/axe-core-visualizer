@@ -1,5 +1,6 @@
 import { results, getAllViolatedRules, getViolationNodes } from '@/lib/axe';
 import Link from 'next/link';
+import { ImpactBadge } from '@/components/badge';
 
 export default function Violations() {
   const allViolatedRules = getAllViolatedRules(results);
@@ -8,13 +9,15 @@ export default function Violations() {
   return (
     <>
       <h1>All violations</h1>
-      <ul>
+      <ul className="w-full">
         {allViolationNodes.map((violation) => (
-          <li key={violation.id}>
+          <li
+            key={violation.id}
+            className="flex justify-between">
             <Link href={`/violations/${violation.rule.id}`}>
               {violation.rule.id} | {violation.target}
             </Link>
-            <p>{violation.impact}</p>
+            <ImpactBadge impact={violation.impact!} />
           </li>
         ))}
       </ul>
